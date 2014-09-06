@@ -2,7 +2,9 @@
   "name": "bee-sharp",
   "version": "0.0.1",
   "dependencies": {
-    "impulse": "0.0.4"
+    "impulse": "0.0.4",
+    "gzippo": "~0.2.0",
+    "express": "~4.8.8"
   },
   "devDependencies": {
     "gulp": "~3.5.0",

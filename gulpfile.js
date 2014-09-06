@@ -66,6 +66,12 @@ gulp.task('build', function(callback) {
     );
 });
 
+gulp.task('heroku:production', function(callback) {
+    runSequence( 'less', 'appjs', 'scripts', 'html', 'images', 'index',
+        callback
+    );
+});
+
 // Default task
 gulp.task('default', ['clean'], function () {
     gulp.start('build');
