@@ -11,7 +11,7 @@ angular.module('bee-sharp').service('BeeKeeperService', function($interval, $tim
             if (bee.clicked) {return;}
 
             var beePosition = ImpulseService.exactPosition(bee);
-            if (LocationService.areWithin(position, beePosition, WindowHeight/10)) {
+            if (LocationService.areWithin(position, beePosition, 25)) {
                 $interval.cancel(bee.interval);
                 bee.scurrying=true;
                 ImpulseService.sendTo(bee, that.hive, HIVE_OFFSET);

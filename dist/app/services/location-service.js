@@ -9,6 +9,11 @@ angular.module('bee-sharp').service('LocationService', function() {
     };
 
     this.areWithin = function(p1, p2, threshold) {
+		console.log("are within");
+		console.log(p1);
+		console.log(p2);
+		console.log(threshold);
+		console.log(this.distanceFrom(p1,p2));
         return this.distanceFrom(p1,p2) < threshold;
     };
 });
