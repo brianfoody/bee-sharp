@@ -9,8 +9,7 @@ angular.module('bee-sharp').directive('clickTracker', function($timeout, BeeKeep
                 $timeout(function() {
                     BeeKeeperService.registerClick(position);
                 }, 10);
-
-            })
+            });
         }
     };
 });

@@ -10,13 +10,14 @@ angular.module('bee-sharp').directive('bee', function($timeout, ImpulseService, 
 
             var bee = Impulse($element).style({
                 'translate': function(x, y) {
-                    return x + 'px, ' + y + 'px'
+                    return x + 'px, ' + y + 'px';
                 },
                 'scale': function(x,y) {
-                    if (bee.scurrying) {
+                    if (bee.scurrying && ! bee.inHive) {
                         var distance = ImpulseService.distanceFrom(bee, BeeKeeperService.hive);
 
                         if (distance < 90) {
+                            bee.inHive = true;
                             $element.remove();
                         } else {
                             return Math.log(Math.log(distance)) - 1;
@@ -27,6 +28,7 @@ angular.module('bee-sharp').directive('bee', function($timeout, ImpulseService, 
             });
 
             bee.drag(ImpulseService.screenBoundry()).on('start', function() {
+                bee.dead = true;
                 BeeKeeperService.tagBee(index, bee);
                 BeeKeeperService.registerSuccessfulClick(bee);
             });

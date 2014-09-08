@@ -8,14 +8,14 @@ angular.module('bee-sharp').controller('MainController', function(BeeKeeperServi
     };
 
     this.gameInProgress = function() {
-        return BeeKeeperService.clickOffset() < 10 && !BeeKeeperService.beesAreAllHome();
+        return BeeKeeperService.clickOffset() < 10 && BeeKeeperService.beesAreBuzzing();
     };
 
     this.gameLost = function() {
-        return BeeKeeperService.clickOffset() >= 10 && !BeeKeeperService.beesAreAllHome();
+        return BeeKeeperService.clickOffset() >= 10 && BeeKeeperService.beesAreBuzzing();
     };
 
     this.gameWon = function() {
-        return BeeKeeperService.clickOffset() < 10 && BeeKeeperService.beesAreAllHome();
+        return BeeKeeperService.clickOffset() < 10 && !BeeKeeperService.beesAreBuzzing();
     };
 });

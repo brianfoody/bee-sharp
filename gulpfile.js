@@ -17,6 +17,8 @@ gulp.task('appjs', function () {
 // Scripts
 gulp.task('scripts', function () {
     return gulp.src(['app/**/*.js'])
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('default'))
         .pipe($.ignore.exclude('**/app.js'))
         .pipe(gulp.dest('dist/app'))
         .pipe($.connect.reload());
