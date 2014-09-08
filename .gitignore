@@ -1,5 +1,9 @@
 .idea/
-*.iml
-.bower-*/
+*
+.iml
+
+.bower-*
+/
 node_modules/
 
+/bower_components/

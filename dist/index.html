@@ -9,16 +9,16 @@
 </head>
 <body click-tracker ng-cloak>
     <div class="col full-width">
-        <div class="col split">
-            <h1 style="color: yellowgreen; font-size: 48px; text-align: center;font-family: Verdana">Bee Sharp</h1>
+        <div class="col split" ng-class="{true: 'split', false: 'full-width'}[mainCtrl.gameInProgress()]">
+            <h1 class="title">Bee Sharp</h1>
         </div>
 
-        <div class="col split" ng-if="mainCtrl.gameInProgress()" >
-            <h2 style="font-size: 48px; padding: 5px; margin: 5px;">
-                Shots left: <span ng-bind="mainCtrl.shotsLeft()"></span>
+        <div class="col split" ng-if="mainCtrl.gameInProgress()" ng-if="mainCtrl.gameInProgress()">
+            <h2 class="stat">
+                Sprays left: <span ng-bind="mainCtrl.shotsLeft()"></span>
             </h2>
-            <h2 style="font-size: 48px; padding: 5px; margin: 5px;">
-                Bees killed: <span ng-bind="mainCtrl.beesKilled()"></span>
+            <h2 class="stat">
+                Bees buzzed: <span ng-bind="mainCtrl.beesKilled()"></span>
             </h2>
         </div>
     </div>
@@ -26,12 +26,15 @@
     <div ng-if="mainCtrl.gameInProgress()">
         <div ng-include="'app/routes/main.html'" ></div>
     </div>
-    <div ng-if="mainCtrl.gameLost()">
+    <div class="col full-width center" ng-if="mainCtrl.gameLost()">
         <h1>Oh oh. You missed the bees.</h1>
         <img src="http://i.imgur.com/5k8DwJI.gif">
     </div>
-    <div ng-if="mainCtrl.gameWon()">
-        <h1>Yes! You sent all the bees home. Time for some honey.</h1>
+    <div class="col full-width center" ng-if="mainCtrl.gameWon()">
+        <h1>Time for some honey!</h1>
+        <p>You scored:</p>
+        <p class="score" ng-bind="mainCtrl.beesKilled()"></p>
+
         <img src="http://home.comcast.net/~brmetcalf/aotw/img/pooh.gif">
     </div>
 

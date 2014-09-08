@@ -5,12 +5,14 @@ angular.module('bee-sharp').directive('clickTracker', function($timeout, BeeKeep
         replace: true,
         controller: function($scope, $element, $attrs) {
             $element.on('mousedown', function(event) {
-                var position = _.pick(event, ['x', 'y']);
+                var position = {
+                    x: (event.x||event.clientX),
+                    y: (event.y||event.clientY)
+                };
                 $timeout(function() {
                     BeeKeeperService.registerClick(position);
                 }, 10);
-
-            })
+            });
         }
     };
 });

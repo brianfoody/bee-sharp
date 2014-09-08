@@ -1,5 +1,4 @@
 angular.module('bee-sharp').service('ImpulseService', function($interval, WindowHeight, WindowWidth) {
-
     this.screenBoundry = function() {
         var height = WindowHeight/19;
         var width = WindowWidth-50;
@@ -19,21 +18,20 @@ angular.module('bee-sharp').service('ImpulseService', function($interval, Window
     this.distanceFrom = function(item1, item2) {
         var item1Loc = this.exactPosition(item1);
         var item2Loc = this.exactPosition(item2);
-        var vector = new Impulse.Vector(item1Loc.x - item2Loc.x, item1Loc.y - item2Loc.y)
+        var vector = new Impulse.Vector(item1Loc.x - item2Loc.x, item1Loc.y - item2Loc.y);
         return vector.norm();
     };
-
 
     this.moveRandomnly = function(item) {
         var x = Math.random() * (WindowWidth/4), y = Math.random() * (WindowHeight/4);
         var destination = {x:x,y:y}, self = this;
 
         var randomLocation = self.relativePosition(self.exactPosition(item), self.randomDestination());
-        item.spring({ tension: 5, damping: 5 }).to(randomLocation.x, randomLocation.y).start()
+        item.spring({ tension: 5, damping: 5 }).to(randomLocation.x, randomLocation.y).start();
 
         return $interval(function() {
             var randomLocation = self.relativePosition(self.exactPosition(item), self.randomDestination());
-            item.spring({ tension: 5, damping: 5 }).to(randomLocation.x, randomLocation.y).start()
+            item.spring({ tension: 5, damping: 5 }).to(randomLocation.x, randomLocation.y).start();
         }, 750);
     };
 

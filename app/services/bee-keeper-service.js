@@ -1,9 +1,24 @@
 angular.module('bee-sharp').service('BeeKeeperService', function($interval, $timeout, ImpulseService, LocationService, WindowHeight) {
-    this.hive, this.bees = [], this.clicks = 0, this.successfulClicks = 0;
+    this.bees = [];
+    this.clicks = 0;
+    this.successfulClicks = 0;
 
     var that = this, HIVE_OFFSET = {x:35, y:60};
 
     this.beeHeight = WindowHeight / 20;
+
+    this.beesAreBuzzing = function() {
+        if (_.isEmpty(this.bees)) { return true; } // wait for initialisation
+        return (this.beesInHive()||0) + (this.deadBees()||0) < this.bees.length;
+    };
+
+    this.beesInHive = function() {
+        return _.where(this.bees, {inHive: true}).length;
+    };
+
+    this.deadBees = function() {
+        return _.where(this.bees, {dead: true}).length;
+    };
 
     this.registerClick = function(position) {
         this.clicks +=1;
@@ -25,10 +40,6 @@ angular.module('bee-sharp').service('BeeKeeperService', function($interval, $tim
 
     this.clickOffset = function() {
         return this.clicks - this.successfulClicks;
-    };
-
-    this.beesAreAllHome = function() {
-        return this.bees.length > 0 && this.bees.length <= this.successfulClicks;
     };
 
     this.registerHive = function(hive) {

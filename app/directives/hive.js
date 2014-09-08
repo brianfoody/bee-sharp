@@ -9,7 +9,7 @@ angular.module('bee-sharp').directive('hive', function(BeeKeeperService) {
 
             var item = Impulse(hive).style({
                 translate:  function(x, y) {
-                    return x + 'px, ' + y + 'px'
+                    return x + 'px, ' + y + 'px';
                 }
             });
 
