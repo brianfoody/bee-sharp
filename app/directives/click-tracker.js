@@ -4,7 +4,7 @@ angular.module('bee-sharp').directive('clickTracker', function($timeout, BeeKeep
         scope: {},
         replace: true,
         controller: function($scope, $element, $attrs) {
-            $element.on('mousedown', function(event) {
+            $element.on('mousedown touch', function(event) {
                 var position = {
                     x: (event.x||event.clientX),
                     y: (event.y||event.clientY)
